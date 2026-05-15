@@ -1,5 +1,6 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
@@ -28,12 +29,12 @@
 
         layer_1 {
             bindings = <
-&trans  &trans  &trans             &trans                  &trans             &trans              &kp NUMBER_7                       &kp NUMBER_8   &kp NUMBER_9  &trans  &trans        &trans
-&trans  &trans  &trans             &kp LC(LA(E))           &kp LC(LA(R))      &kp LC(LA(T))       &kp NUMBER_4                       &kp NUMBER_5   &kp NUMBER_6  &trans  &kp ASTERISK  &kp SLASH
-&trans  &trans  &kp LC(LA(S))      &kp LC(LA(D))           &kp LC(LA(F))      &kp LC(LA(G))       &kp NUMBER_1                       &kp NUMBER_2   &kp NUMBER_3  &trans  &kp PLUS      &kp MINUS
-&trans  &trans  &kp LC(LA(ENTER))  &kp LC(LA(LEFT_ARROW))  &kp LC(LA(RIGHT))  &kp LEFT_COMMAND    &kp LCTRL                          &kp N0         &kp DOT       &trans  &kp EQUAL     &trans
-                                   &trans                  &none              &trans              &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &kp LC(RIGHT)
-                                                           &trans             &mkp MB2            &kp LC(LEFT_ARROW)
+&kp GRAVE       &trans  &trans             &trans                  &trans             &trans              &kp NUMBER_7                       &kp NUMBER_8   &kp NUMBER_9  &trans  &trans        &kp BACKSPACE
+&trans          &trans  &trans             &kp LC(LA(E))           &kp LC(LA(R))      &kp LC(LA(T))       &kp NUMBER_4                       &kp NUMBER_5   &kp NUMBER_6  &trans  &kp ASTERISK  &kp SLASH
+&kp LEFT_SHIFT  &trans  &kp LC(LA(S))      &kp LC(LA(D))           &kp LC(LA(F))      &kp LC(LA(G))       &kp NUMBER_1                       &kp NUMBER_2   &kp NUMBER_3  &trans  &kp PLUS      &kp MINUS
+&trans          &trans  &kp LC(LA(ENTER))  &kp LC(LA(LEFT_ARROW))  &kp LC(LA(RIGHT))  &kp LEFT_COMMAND    &kp LCTRL                          &kp N0         &kp DOT       &trans  &kp EQUAL     &trans
+                                           &trans                  &none              &trans              &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &kp LC(RIGHT)
+                                                                   &trans             &mkp MB2            &kp LC(LEFT_ARROW)
             >;
 
             trackball-bindings = <&tsl>;
@@ -54,7 +55,7 @@
 
         layer_3 {
             bindings = <
-&trans                    &trans  &trans         &trans         &trans         &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR_ALL            &trans  &trans         &trans         &trans         &trans    &trans  &trans  &trans  &trans  &trans  &trans
 &trans                    &trans  &trans         &trans         &trans         &trans    &trans  &trans  &trans  &trans  &trans  &trans
 &trans                    &trans  &trans         &trans         &trans         &trans    &trans  &trans  &trans  &trans  &trans  &trans
 &kp LG(LC(LS(NUMBER_4)))  &trans  &kp LC(LA(Z))  &kp LC(LA(X))  &kp LC(LA(C))  &trans    &trans  &trans  &trans  &trans  &trans  &trans
