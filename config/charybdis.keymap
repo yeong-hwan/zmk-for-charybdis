@@ -35,6 +35,8 @@
                                &trans         &none                   &trans               &kp LEFT_CONTROL    &kp LC(RIGHT)
                                               &trans                  &kp LEFT_COMMAND     &kp LC(LEFT_ARROW)
             >;
+
+            trackball-bindings = <&tsl>;
         };
 
         layer_2 {
@@ -42,7 +44,7 @@
 &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6    &kp F7          &kp F8         &kp F9     &kp F10     &kp F11               &kp F12
 &none   &none   &none   &none   &none   &none     &none           &none          &none      &none       &none                 &none
 &none   &none   &none   &none   &none   &none     &none           &kp UP_ARROW   &none      &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC
-&none   &none   &none   &none   &none   &none     &kp LEFT_ARROW  &kp DOWN       &kp RIGHT  &kp K_MUTE  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP
+&none   &none   &none   &none   &none   &none     &kp LEFT_ARROW  &kp DOWN       &kp RIGHT  &kp C_MUTE  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP
                         &none   &none   &none     &none           &kp LG(LC(Q))
                                 &none   &none     &none
             >;
@@ -60,58 +62,5 @@
                                               &trans         &trans    &trans
             >;
         };
-
-        /* layer_2 {
-            bindings = <
-&none  &none   &none    &none   &none         &none         &kp N1         &none         &none     &none  &none   &to 0
-&none  &none   &none    &none   &none         &none         &none         &none          &rgb_ug RGB_BRD &rgb_ug RGB_BRI  &rgb_ug RGB_EFF   &rgb_ug RGB_TOG
-&none  &none   &none    &none   &none         &none         &none         &mkp LCLK     &mkp RCLK  &none  &none   &none
-&none  &none   &none    &none   &bt BT_NXT  &bt BT_CLR    &none         &none         &none     &none  &none   &none
-                                   &none         &none         &none         &none         &none
-                                                 &none         &none         &none
-            >;
-          trackball-bindings = <&tsl>;
-            
-        };
-
-       Mouse {
-            bindings = <
-&none        &none         &none         &none         &none      &none         &none       &none      &none         &none         &none         &none
-&none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 3  &none      &bt BT_CLR    &bt BT_CLR  &none      &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &none
-&none        &trans        &trans        &mkp MCLK     &trans     &none         &none       &trans     &mkp MCLK     &trans        &trans        &none
-&bootloader  &trans        &mkp RCLK     &mo 4         &mkp LCLK  &mo 5         &mo 5       &mkp LCLK  &mo 4         &mkp RCLK     &trans        &bootloader
-                                         &mo 5         &mkp LCLK  &mkp RCLK     &mkp RCLK   &mkp LCLK
-                                                       &none      &trans        &trans
-            >;
-
-            
-        };
-
-        layer_4 {
-            bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &mkp MCLK  &trans     &trans       &trans     &trans     &mkp MCLK  &trans     &trans  &trans
-&trans  &trans  &mkp RCLK  &trans     &mkp LCLK  &trans       &trans     &mkp LCLK  &trans     &mkp RCLK  &trans  &trans
-                           &trans     &mkp LCLK  &mkp RCLK    &mkp RCLK  &mkp LCLK
-                                      &trans     &trans       &trans
-            >;
-                
-                
-                trackball-bindings = <&tsl>;
-        };
-
-        layer_5 {
-            bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &mkp MCLK  &trans     &trans       &trans     &trans     &mkp MCLK  &trans     &trans  &trans
-&trans  &trans  &mkp RCLK  &trans     &mkp LCLK  &trans       &trans     &mkp LCLK  &trans     &mkp RCLK  &trans  &trans
-                           &trans     &mkp LCLK  &mkp RCLK    &mkp RCLK  &mkp LCLK
-                                      &trans     &trans       &trans
-            >;
-                trackball-bindings = <&tmv_fine>;
-                
-        };*/
     };
 };
