@@ -32,18 +32,18 @@
 &trans  &trans  &trans         &kp LC(LA(E))  &kp LC(LA(R))           &kp LC(LA(T))        &kp NUMBER_4        &kp NUMBER_5   &kp NUMBER_6  &trans  &kp ASTERISK  &kp SLASH
 &trans  &trans  &kp LC(LA(S))  &kp LC(LA(D))  &kp LC(LA(F))           &kp LC(LA(G))        &kp NUMBER_1        &kp NUMBER_2   &kp NUMBER_3  &trans  &kp PLUS      &kp MINUS
 &trans  &trans  &trans         &trans         &kp LC(LA(LEFT_ARROW))  &kp LC(LA(RIGHT))    &trans              &kp N0         &kp DOT       &trans  &kp EQUAL     &trans
-                               &trans         &none                   &trans               &kp LG(LC(Q))       &kp LC(RIGHT)
+                               &trans         &none                   &trans               &kp LEFT_CONTROL    &kp LC(RIGHT)
                                               &trans                  &kp LEFT_COMMAND     &kp LC(LEFT_ARROW)
             >;
         };
 
         layer_2 {
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6    &kp F7          &kp F8        &kp F9     &kp F10     &kp F11               &kp F12
-&none   &none   &none   &none   &none   &none     &none           &none         &none      &none       &none                 &none
-&none   &none   &none   &none   &none   &none     &none           &kp UP_ARROW  &none      &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC
-&none   &none   &none   &none   &none   &none     &kp LEFT_ARROW  &kp DOWN      &kp RIGHT  &kp K_MUTE  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP
-                        &none   &none   &none     &none           &none
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6    &kp F7          &kp F8         &kp F9     &kp F10     &kp F11               &kp F12
+&none   &none   &none   &none   &none   &none     &none           &none          &none      &none       &none                 &none
+&none   &none   &none   &none   &none   &none     &none           &kp UP_ARROW   &none      &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC
+&none   &none   &none   &none   &none   &none     &kp LEFT_ARROW  &kp DOWN       &kp RIGHT  &kp K_MUTE  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP
+                        &none   &none   &none     &none           &kp LG(LC(Q))
                                 &none   &none     &none
             >;
 
