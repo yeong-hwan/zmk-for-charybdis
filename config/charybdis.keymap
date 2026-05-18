@@ -54,11 +54,11 @@
 
         layer_3 {
             bindings = <
-&none                     &trans  &trans         &trans         &trans         &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans                    &trans  &trans         &trans         &trans         &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans                    &trans  &trans         &trans         &trans         &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LG(LC(LS(NUMBER_4)))  &trans  &kp LC(LA(Z))  &kp LC(LA(X))  &kp LC(LA(C))  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                                                 &trans         &trans         &trans    &trans  &trans
+&none                     &trans  &trans         &trans         &trans         &trans    &trans                &trans                &trans                &trans  &trans  &trans
+&trans                    &trans  &trans         &trans         &trans         &trans    &kp LA(LC(NUMBER_7))  &kp LC(LA(N8))        &kp LC(LA(N9))        &trans  &trans  &trans
+&trans                    &trans  &trans         &trans         &trans         &trans    &kp LC(LA(NUMBER_4))  &kp LC(LA(N5))        &kp LA(LC(NUMBER_6))  &trans  &trans  &trans
+&kp LG(LC(LS(NUMBER_4)))  &trans  &kp LC(LA(Z))  &kp LC(LA(X))  &kp LC(LA(C))  &trans    &kp LC(LA(NUMBER_1))  &kp LC(LA(NUMBER_2))  &kp LC(LA(NUMBER_3))  &trans  &trans  &trans
+                                                 &trans         &trans         &trans    &trans                &trans
                                                                 &trans         &trans    &trans
             >;
         };
