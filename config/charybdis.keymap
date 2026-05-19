@@ -42,12 +42,12 @@
 
         layer_2 {
             bindings = <
-&kp F1          &kp F2  &kp F3  &kp F4    &kp F5              &kp F6                 &kp F7          &kp F8          &kp F9           &kp F10     &kp F11               &kp F12
-&none           &none   &none   &none     &none               &none                  &none           &none           &none            &none       &kp LEFT_BRACKET      &kp RIGHT_BRACKET
-&kp LEFT_SHIFT  &none   &none   &none     &kp PAGE_UP         &none                  &none           &kp UP_ARROW    &none            &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC
-&none           &none   &none   &kp HOME  &kp PAGE_DOWN       &kp END                &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp C_MUTE  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP
-                                &none     &kp LEFT_COMMAND    &none                  &none           &kp LG(LC(Q))
-                                          &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)    &none
+&kp F1          &kp F2  &kp F3  &kp F4              &kp F5              &kp F6                 &kp F7          &kp F8          &kp F9           &kp F10     &kp F11               &kp F12
+&none           &none   &none   &none               &none               &none                  &none           &none           &none            &none       &kp LEFT_BRACKET      &kp RIGHT_BRACKET
+&kp LEFT_SHIFT  &none   &none   &none               &kp PAGE_UP         &none                  &none           &kp UP_ARROW    &none            &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC
+&none           &none   &none   &kp LG(LEFT_ARROW)  &kp PAGE_DOWN       &kp LG(RIGHT)          &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp C_MUTE  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP
+                                &none               &kp LEFT_COMMAND    &none                  &none           &kp LG(LC(Q))
+                                                    &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)    &none
             >;
 
             trackball-bindings = <&tsl>;
