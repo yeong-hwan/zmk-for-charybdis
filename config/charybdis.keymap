@@ -29,12 +29,12 @@
 
         layer_1 {
             bindings = <
-&none           &kp GRAVE  &trans             &trans                  &trans                   &trans              &none                              &none                &none         &trans  &trans        &kp BACKSPACE
-&trans          &trans     &trans             &kp LC(LA(E))           &kp LC(LA(R))            &kp LC(LA(T))       &kp N7                             &kp N8               &kp N9        &trans  &kp ASTERISK  &kp SLASH
-&kp LEFT_SHIFT  &trans     &kp LC(LA(S))      &kp LC(LA(D))           &kp LC(LA(F))            &kp LC(LA(G))       &kp NUMBER_4                       &kp N5               &kp NUMBER_6  &trans  &kp PLUS      &kp MINUS
-&kp LCTRL       &trans     &kp LC(LA(ENTER))  &kp LC(LA(LEFT_ARROW))  &kp LC(LA(RIGHT_ARROW))  &kp LEFT_COMMAND    &kp NUMBER_1                       &kp NUMBER_2         &kp NUMBER_3  &trans  &kp EQUAL     &trans
-                                              &trans                  &none                    &trans              &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &kp LC(RIGHT_ARROW)
-                                                                      &trans                   &mkp MB2            &kp LC(LEFT_ARROW)
+&none           &kp GRAVE               &trans             &trans                  &trans                   &trans              &none                              &none                &none         &trans  &trans        &kp BACKSPACE
+&trans          &trans                  &trans             &kp LC(LA(E))           &kp LC(LA(R))            &kp LC(LA(T))       &kp N7                             &kp N8               &kp N9        &trans  &kp ASTERISK  &kp SLASH
+&kp LEFT_SHIFT  &kp LC(LA(UP_ARROW))    &kp LC(LA(S))      &kp LC(LA(D))           &kp LC(LA(F))            &kp LC(LA(G))       &kp NUMBER_4                       &kp N5               &kp NUMBER_6  &trans  &kp PLUS      &kp MINUS
+&kp LCTRL       &kp LC(LA(DOWN_ARROW))  &kp LC(LA(ENTER))  &kp LC(LA(LEFT_ARROW))  &kp LC(LA(RIGHT_ARROW))  &kp LEFT_COMMAND    &kp NUMBER_1                       &kp NUMBER_2         &kp NUMBER_3  &kp N0  &kp EQUAL     &trans
+                                                           &trans                  &none                    &trans              &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &kp LC(RIGHT_ARROW)
+                                                                                   &trans                   &mkp MB2            &kp LC(LEFT_ARROW)
             >;
 
             trackball-bindings = <&tsl>;
