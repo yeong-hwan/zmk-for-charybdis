@@ -75,18 +75,23 @@ gh run download <run-id> --repo yeong-hwan/zmk-for-charybdis --name firmware --d
   **이 Mac은 볼륨을 자동 마운트하지 않는다** → `diskutil mount`를 직접 해야 한다.
 - 복사 마지막에 `fcopyfile failed: Input/output error`가 나는 것은 **정상**
   (보드가 펌웨어 수신 완료 후 스스로 재부팅하며 드라이브가 끊김).
-- **복사가 실제로 실패하고 부트로더에 남는 경우가 실제로 있다.** 성공 판정은
-  cp 종료코드가 아니라 재열거 확인으로 한다: `system_profiler SPUSBDataType`에
+- **복사가 불완전하게 끝나 부트로더에 남는 경우가 잦다** (이 Mac에서 3회 중 2회 발생).
+  성공 판정은 cp 종료코드가 아니라 재열거 확인으로 한다: `system_profiler SPUSBDataType`에
   `ZMK Project`가 보이면 성공, 여전히 `nice!nano`면 재마운트 후 다시 복사.
-- 감시+마운트+복사 자동화(백그라운드로 실행해두고 사용자에게 더블탭 안내):
+- 감시+마운트+복사+검증+재시도 자동화(백그라운드로 실행해두고 사용자에게 더블탭 안내):
 ```bash
-until [ -d /Volumes/NICENANO ]; do
-  disk=$(diskutil list external physical 2>/dev/null | awk '/NICENANO/ {print $NF}' | head -1)
-  [ -n "$disk" ] && diskutil mount "$disk" >/dev/null 2>&1
-  sleep 1
+for attempt in 1 2 3; do
+  until [ -d /Volumes/NICENANO ]; do
+    disk=$(diskutil list external physical 2>/dev/null | awk '/NICENANO/ {print $NF}' | head -1)
+    [ -n "$disk" ] && diskutil mount "$disk" >/dev/null 2>&1
+    sleep 1
+  done
+  cp "<펌웨어>.uf2" /Volumes/NICENANO/ 2>/dev/null   # 끝에 I/O error 나는 것은 정상
+  sleep 6
+  system_profiler SPUSBDataType 2>/dev/null | grep -q "ZMK Project" && { echo "FLASH_OK"; exit 0; }
+  echo "attempt $attempt: still in bootloader, retrying"
 done
-cp "<펌웨어>.uf2" /Volumes/NICENANO/   # I/O error 무시
-sleep 5   # 이후 system_profiler로 ZMK Project 재열거 확인
+echo "FLASH_FAILED after 3 attempts"
 ```
 - keymap/동작 변경은 양쪽 모두 플래시가 원칙. 설정 파티션은 유지되므로
   BT 페어링은 보통 그대로 살아있다. 좌우 연결이 깨졌을 때만 `settings_reset`을
