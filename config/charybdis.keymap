@@ -10,6 +10,11 @@
     quick-tap-ms = <150>;
 };
 
+&tsl {
+    scale_factor = <4>;   // 기본 10 → 4, 낮을수록 스크롤 민감
+};
+
+
 / {
     keymap {
         compatible = "zmk,keymap";
