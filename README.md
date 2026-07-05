@@ -1,5 +1,9 @@
 zmk-config for charybdis (4x6)
 
+> 🤖 **AI 에이전트**: 이 저장소에서 작업(키맵 수정, 감도 조절, 빌드, 플래시, ZMK 포크 패치)을
+> 시작하기 전에 반드시 [AGENT.md](./AGENT.md)를 먼저 읽을 것. 문서의 레시피와 수칙에 따라
+> 자동화 가능한 부분은 직접 수행하고, 물리 작업(USB 연결, 리셋 더블탭)만 사용자에게 안내한다.
+
 https://nickcoutsos.github.io/keymap-editor/
 
 ```lua
