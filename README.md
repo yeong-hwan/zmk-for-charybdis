@@ -12,54 +12,51 @@ https://nickcoutsos.github.io/keymap-editor/
 -- Ctrl+Opt+X → 2번 모니터
 -- Ctrl+Opt+C → 3번 모니터
 
--- hs.timer는 Lua 참조가 없으면 GC로 수거되어 발화하지 않으므로,
--- 발화 전까지 여기에 보관해서 flash 캔버스가 화면에 남는 것을 방지
-local flashTimers = {}
-
-local function deleteCanvasAfter(canvas, delay, fadeOut)
-  local timer
-  timer = hs.timer.doAfter(delay, function()
-    flashTimers[timer] = nil
-    canvas:delete(fadeOut)
-  end)
-  flashTimers[timer] = true
-end
-
-local function flashFrame(frame)
-  local canvas = hs.canvas.new(frame)
-  canvas:appendElements({
-    type = "rectangle",
-    action = "strokeAndFill",
-    fillColor = { white = 1, alpha = 0.18 },
-    strokeColor = { red = 1, green = 0, blue = 0, alpha = 0.9 },
-    strokeWidth = 6,
-    roundedRectRadii = { xRadius = 10, yRadius = 10 },
-  })
+-- hs.canvas는 new→show→delete 사이클마다 화면 버퍼(CALayer 백킹스토어)를
+-- 해제하지 않고 누수하므로(풀스크린 1회당 수십 MB), 캔버스는 시작 시
+-- 한 번만 만들어 두고 show/hide로 재사용한다
+local function makeFlash(element, delay, fadeOut)
+  local canvas = hs.canvas.new({ x = 0, y = 0, w = 1, h = 1 })
+  canvas:appendElements(element)
   canvas:level("overlay")
-  canvas:show()
-  deleteCanvasAfter(canvas, 0.15, 0.2)
+  local hideTimer = nil
+  return function(frame)
+    canvas:frame(frame)
+    canvas:show()
+    if hideTimer then hideTimer:stop() end
+    hideTimer = hs.timer.doAfter(delay, function()
+      canvas:hide(fadeOut)
+    end)
+  end
 end
+
+local flashFrame = makeFlash({
+  type = "rectangle",
+  action = "strokeAndFill",
+  fillColor = { white = 1, alpha = 0.18 },
+  strokeColor = { red = 1, green = 0, blue = 0, alpha = 0.9 },
+  strokeWidth = 6,
+  roundedRectRadii = { xRadius = 10, yRadius = 10 },
+}, 0.15, 0.2)
+
+local flashCursorFrame = makeFlash({
+  type = "oval",
+  action = "strokeAndFill",
+  fillColor = { red = 1, green = 0, blue = 0, alpha = 0.25 },
+  strokeColor = { red = 1, green = 0, blue = 0, alpha = 0.95 },
+  strokeWidth = 4,
+}, 0.2, 0.25)
 
 local function flashCursor(x, y)
   local size = 50
-  local canvas = hs.canvas.new({x = x - size / 2, y = y - size / 2, w = size, h = size})
-  canvas:appendElements({
-    type = "oval",
-    action = "strokeAndFill",
-    fillColor = { red = 1, green = 0, blue = 0, alpha = 0.25 },
-    strokeColor = { red = 1, green = 0, blue = 0, alpha = 0.95 },
-    strokeWidth = 4,
-  })
-  canvas:level("overlay")
-  canvas:show()
-  deleteCanvasAfter(canvas, 0.2, 0.25)
+  flashCursorFrame({ x = x - size / 2, y = y - size / 2, w = size, h = size })
 end
 
 -- 9분할 2스텝 이동의 세부 모드 상태
 -- pendingFrame이 있으면 다음 1~9 입력은 그 프레임 내부를 9분할해서 이동
 local pendingFrame = nil
 local pendingTimer = nil
-local subGridCanvas = nil
+local subGridCanvas = hs.canvas.new({ x = 0, y = 0, w = 1, h = 1 }):level("overlay")
 local escHotkey = nil
 
 local function clearPending()
@@ -68,10 +65,7 @@ local function clearPending()
     pendingTimer:stop()
     pendingTimer = nil
   end
-  if subGridCanvas then
-    subGridCanvas:delete(0.15)
-    subGridCanvas = nil
-  end
+  subGridCanvas:hide(0.15)
   if escHotkey then
     escHotkey:disable()
   end
@@ -134,23 +128,24 @@ end
 
 -- 세부 모드 동안 블럭 내부에 3×3 그리드와 numpad 숫자 라벨 표시
 local function showSubGrid(frame)
-  subGridCanvas = hs.canvas.new(frame)
+  local els = {}
   local bw, bh = frame.w / 3, frame.h / 3
   local lineColor = { red = 1, green = 0, blue = 0, alpha = 0.5 }
-  subGridCanvas:appendElements({
+  table.insert(els, {
     type = "rectangle",
     action = "stroke",
     strokeColor = { red = 1, green = 0, blue = 0, alpha = 0.7 },
     strokeWidth = 3,
   })
   for i = 1, 2 do
-    subGridCanvas:appendElements({
+    table.insert(els, {
       type = "segments",
       action = "stroke",
       strokeColor = lineColor,
       strokeWidth = 2,
       coordinates = { { x = bw * i, y = 0 }, { x = bw * i, y = frame.h } },
-    }, {
+    })
+    table.insert(els, {
       type = "segments",
       action = "stroke",
       strokeColor = lineColor,
@@ -162,7 +157,7 @@ local function showSubGrid(frame)
   for row = 1, 3 do
     for col = 1, 3 do
       local num = (3 - row) * 3 + col
-      subGridCanvas:appendElements({
+      table.insert(els, {
         type = "text",
         text = tostring(num),
         textSize = textSize,
@@ -177,7 +172,8 @@ local function showSubGrid(frame)
       })
     end
   end
-  subGridCanvas:level("overlay")
+  subGridCanvas:replaceElements(table.unpack(els))
+  subGridCanvas:frame(frame)
   subGridCanvas:show()
 end
 
@@ -206,4 +202,3 @@ end
 
 hs.alert.show("Hammerspoon config loaded")
 ```
-
