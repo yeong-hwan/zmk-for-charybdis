@@ -37,8 +37,16 @@
     scale_factor = <4>;   // 낮을수록 민감. 포크 기본값 10, 현재 4
 };
 ```
-정수 나눗셈이라 `scale_factor` 미만의 미세 움직임은 버려진다. 부드러운(고해상도)
-스크롤은 이 포크가 지원하지 않음 — 그건 macOS 쪽 LinearMouse로 보간한다.
+정수 나눗셈이라 `scale_factor` 미만의 미세 움직임은 버려진다.
+
+**스크롤 부드러움(뚝뚝 끊김)은 펌웨어로 해결 불가** — 이 포크는 정수 휠 틱만 보내고
+고해상도 스크롤(HID Resolution Multiplier)을 지원하지 않는다. `scale_factor`는 틱
+빈도만 바꿀 뿐이다. 해법은 macOS 쪽 보간:
+```bash
+brew install --cask linearmouse
+```
+설치 후 LinearMouse 실행 → 손쉬운 사용 권한 허용 → 장치 목록에서 charybdis 선택
+→ Scrolling → **Smooth scrolling** 활성화. 장치별 설정이므로 트랙패드에는 영향 없음.
 
 ### 3-2. 포인터 감도 조절
 - 레이어별: keymap의 `trackball-bindings`를 `&tmv_coarse`(÷1) / `&tmv`(÷2) / `&tmv_fine`(÷4)로 교체
